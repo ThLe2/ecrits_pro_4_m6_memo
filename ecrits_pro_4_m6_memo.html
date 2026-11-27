@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Formules clients et présentation de la lettre</title>
+<style>
+:root{--prune:#8C1E70;--prune-fonce:#5E1349;--prune-clair:#F4E6EE;--accent:#C77BAA;
+ --vert:#283C28;--gris:#3C3C3C;--gris-moyen:#8A7A85;--filet:#E8DCE5;--creme:#FAF6F8;
+ --ok:#2F7A4F;--ko:#B23B3B;--amb:#B5852A;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--creme);color:var(--gris);
+ font-family:"Nunito","Segoe UI",Helvetica,Arial,sans-serif;font-size:16px;line-height:1.62}
+.wrap{max-width:900px;margin:0 auto;padding:0 18px 60px}
+header.bandeau{background:var(--prune-fonce);color:#fff;padding:18px 0;border-bottom:4px solid var(--accent)}
+header.bandeau .wrap{padding-bottom:0}
+.chapitre{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:#EAD3E3}
+.chapitre span{color:var(--accent);margin:0 6px}
+h1{font-family:Georgia,"Times New Roman",serif;font-size:27px;line-height:1.25;margin:8px 0 4px;color:#fff}
+.sous{color:#EAD3E3;font-size:14.5px;margin:0}
+h2{font-family:Georgia,"Times New Roman",serif;font-size:20px;color:var(--prune-fonce);
+ margin:34px 0 0;padding-bottom:8px;border-bottom:2px solid var(--filet)}
+h2 .num{color:var(--accent);margin-right:8px}
+h3{font-size:15px;color:var(--vert);margin:20px 0 8px;letter-spacing:.02em}
+.carte{background:#fff;border:1px solid var(--filet);border-radius:10px;padding:20px 22px;margin:18px 0;
+ box-shadow:0 1px 2px rgba(94,19,73,.05)}
+.enc{background:var(--prune-clair);border-left:5px solid var(--prune);padding:14px 18px;
+ border-radius:0 8px 8px 0;margin:18px 0;font-size:15.2px}
+.enc .t{display:block;font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;
+ font-weight:800;color:var(--prune-fonce);margin-bottom:6px}
+.enc.al{background:#FBF4F4;border-left-color:var(--ko)}.enc.al .t{color:var(--ko)}
+.enc.ci{background:#FCF8F0;border-left-color:var(--amb)}.enc.ci .t{color:#8A6418}
+.situ{background:#FCF9FB;border:1px dashed var(--filet);border-radius:8px;padding:16px 18px;margin:16px 0;font-size:15.2px}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0}
+.duo>div{background:#fff;border:1px solid var(--filet);border-radius:9px;padding:15px 17px;font-size:14.8px}
+.duo .h{font-weight:800;color:var(--prune-fonce);margin-bottom:7px;font-size:14.5px}
+.tri{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0}
+.tri>div{background:#fff;border:1px solid var(--filet);border-radius:9px;padding:14px 15px;font-size:14.3px}
+.quad{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0}
+.quad>div{background:#fff;border:1px solid var(--filet);border-radius:9px;padding:12px 13px;font-size:13.6px}
+.quad .h{font-weight:800;color:var(--prune-fonce);margin-bottom:6px;font-size:13px;
+ text-transform:uppercase;letter-spacing:.04em}
+.tri .h{font-weight:800;color:var(--prune-fonce);margin-bottom:6px;font-size:13.5px;
+ text-transform:uppercase;letter-spacing:.05em}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14.8px;background:#fff}
+th,td{border:1px solid var(--filet);padding:9px 12px;text-align:left}
+thead th{background:var(--prune-clair);color:var(--prune-fonce);font-size:13.5px}
+tbody th{font-weight:600;color:var(--gris)}
+td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.tot td,tr.tot th{background:#FBF3F8;font-weight:800;color:var(--prune-fonce)}
+.dl{display:inline-flex;align-items:center;gap:9px;background:var(--prune);color:#fff;text-decoration:none;
+ padding:11px 20px;border-radius:8px;font-weight:700;font-size:15px;margin:20px 0 4px}
+.dl:hover{background:var(--prune-fonce)}
+ol.q{padding-left:0;list-style:none;counter-reset:q}
+ol.q>li{margin:16px 0;padding-left:38px;position:relative}
+ol.q>li::before{counter-increment:q;content:counter(q);position:absolute;left:0;top:1px;
+ width:26px;height:26px;border-radius:50%;background:var(--prune-clair);color:var(--prune-fonce);
+ font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center}
+b,strong{color:var(--vert)}
+footer{text-align:center;font-size:12.5px;color:var(--gris-moyen);padding:26px 18px 12px;
+ border-top:1px solid var(--filet);margin-top:44px}
+@media(max-width:860px){.quad{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.duo,.tri,.quad{grid-template-columns:1fr}h1{font-size:22px}}
+@media print{body{background:#fff}.dl{display:none}header.bandeau{background:#5E1349 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+td{vertical-align:top}td:first-child{min-width:120px}@media(max-width:640px){td:first-child{min-width:0}.carte table{display:block;overflow-x:auto;max-width:100%}}</style></head>
+<body>
+<header class="bandeau"><div class="wrap">
+ <div class="chapitre">Écrits professionnels 4 <span>/</span> Module 6</div><h1>Formules clients et présentation de la lettre</h1><p class="sous">Fiche mémo — Les formules de chaque étape, la mise en page de la lettre, la formule de politesse</p>
+</div></header>
+<div class="wrap">
+<a class="dl" href="ecrits_pro_4_M6_Fiche_memo.pdf" download>⬇ Télécharger la fiche mémo (PDF)</a>
+<h2><span class="num">1 ·</span>Les formules clients, étape par étape</h2>
+<div class="carte">
+<p>Les étapes de l'e-mail vues en Écrits professionnels 3 se retrouvent dans la lettre. Pour chacune, quelques formules sûres. Lorsque vous le pouvez, <b>commencez par « vous »</b> : on parle du client avant de parler de soi.</p>
+<table><thead><tr><th>Étape</th><th>Formules</th><th>Attention</th></tr></thead><tbody><tr><td><b>Le contexte</b></td><td>Vous nous avez contacté<b>s</b> le 3 mars au sujet de… · Vous souhaitez… · Vous nous informez de… · Nous avons bien reçu votre courrier du…</td><td>« Vous nous avez contactés » : avoir, COD « nous » placé avant, accord. Évitez « nous accusons réception », trop administratif.</td></tr><tr><td><b>La compréhension, les excuses</b></td><td>Nous comprenons votre déception. · Nous vous prions de nous excuser pour ce contretemps.</td><td>Selon les entreprises, on manifeste de la compréhension ou on présente des excuses : appliquez l'usage de votre service.</td></tr><tr><td><b>Les explications, les solutions</b></td><td>Après vérification, … · Nous vous proposons de… · Vous trouverez ci-joint… · Afin de…, nous vous invitons à…</td><td>Une information par paragraphe, dans l'ordre logique.</td></tr><tr><td><b>La convivialité</b></td><td>Nous restons à votre écoute pour toute précision. · Nous vous remercions de votre confiance. · Nous serons ravis de vous accompagner dans votre projet.</td><td>Ne l'oubliez jamais. Avec un prospect, elle peut figurer dès le contexte : nous vous remercions de l'intérêt que vous portez à nos services.</td></tr></tbody></table>
+
+</div>
+<h2><span class="num">2 ·</span>La présentation de la lettre</h2>
+<div class="carte">
+<p>Une lettre se lit d'abord d'un coup d'œil : chaque élément a sa place. Utilisez les tabulations de votre traitement de texte, jamais les espaces, pour aligner les blocs.</p>
+<table><thead><tr><th>Ordre</th><th>Élément</th><th>Place et contenu</th></tr></thead><tbody><tr><td>1</td><td><b>L'expéditeur</b></td><td>En haut à gauche : nom de l'entreprise ou du service, adresse, téléphone, site, adresse électronique.</td></tr><tr><td>2</td><td><b>Le destinataire</b></td><td>À droite, plus bas : civilité, prénom, nom, adresse complète.</td></tr><tr><td>3</td><td><b>Le lieu et la date</b></td><td>À droite, sous le destinataire : Lille, le 29 septembre 2026.</td></tr><tr><td>4</td><td><b>Les références</b></td><td>À gauche : numéro de client, de contrat, de dossier, d'allocataire.</td></tr><tr><td>5</td><td><b>L'objet</b> et, le cas échéant, <b>PJ</b></td><td>À gauche : l'objet précis ; dessous, les pièces jointes (PJ : attestation, étiquette retour).</td></tr><tr><td>6</td><td><b>La formule d'appel</b></td><td>Madame, · Monsieur, · Madame, Monsieur, · Cher client, — jamais avec le nom, suivie d'une virgule.</td></tr><tr><td>7</td><td><b>Le corps</b></td><td>Le contexte, les informations, la convivialité : un paragraphe par idée.</td></tr><tr><td>8</td><td><b>La formule de politesse</b></td><td>Elle reprend la formule d'appel, entre virgules (section 3).</td></tr><tr><td>9</td><td><b>La signature</b></td><td>À droite : prénom, nom, fonction. Le bloc est allégé : l'adresse figure déjà en en-tête.</td></tr></tbody></table>
+<div class="enc ci"><span class="t">LETTRE OU E-MAIL ?</span>Les étapes sont les mêmes. Seules changent la mise en page (en-tête, destinataire, lieu et date) et la formule de politesse : complète dans la lettre, brève dans l'e-mail (Bien cordialement).</div>
+</div>
+<h2><span class="num">3 ·</span>La formule de politesse de la lettre</h2>
+<div class="carte">
+<p>Elle a une forme fixe. Quatre points de vigilance suffisent à éviter la plupart des erreurs.</p>
+<table><thead><tr><th>Règle</th><th>Correct</th><th>Fautif</th></tr></thead><tbody><tr><td><b>La civilité est identique à la formule d'appel</b></td><td>Madame, … je vous prie de recevoir, <b>Madame</b>, mes sincères salutations.</td><td>Madame, … je vous prie de recevoir, Chère cliente, mes salutations.</td></tr><tr><td><b>On exprime des sentiments, pas des salutations</b></td><td>l'<b>expression</b> de mes <b>sentiments</b> dévoués · mes <b>salutations</b> distinguées</td><td>l'expression de mes salutations distinguées</td></tr><tr><td><b>La formule d'appel se place entre virgules</b></td><td>Nous vous prions d'agréer<b>,</b> Monsieur<b>,</b> nos salutations distinguées.</td><td>Nous vous prions d'agréer Monsieur nos salutations distinguées.</td></tr><tr><td><b>Le même sujet du début à la fin</b></td><td>En vous remerciant de votre confiance, <b>je vous prie</b> d'agréer…</td><td>En vous remerciant de votre confiance, veuillez agréer…</td></tr></tbody></table>
+<div class="enc al"><span class="t">TROIS FORMULES SÛRES</span>Je vous prie de recevoir, Madame, mes sincères salutations. · Nous vous prions d'agréer, Monsieur, nos salutations distinguées. · Je vous prie d'agréer, Madame, l'expression de mes sentiments dévoués.</div>
+</div>
+<h2><span class="num">4 ·</span>À retenir</h2>
+<div class="carte"><ol class="q"><li>Les étapes de l'e-mail se retrouvent dans la lettre : contexte, informations, convivialité, formule de politesse, signature.</li><li>Commencez par « vous » : on parle du client avant de parler de soi ; évitez « nous accusons réception ».</li><li>Expéditeur à gauche, destinataire à droite, puis lieu et date, références, objet, PJ, formule d'appel.</li><li>La formule de politesse reprend la civilité de la formule d'appel, entre virgules ; l'expression appelle des sentiments, pas des salutations.</li></ol></div>
+<footer>TMK Performances - N° Siret : 49841924100027 - Code NAF : 8559A</footer>
+</div>
+</body></html>
